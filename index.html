@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo 列表 V2.1</title>
+  <style>
+    /* 基础样式，让页面更整洁 */
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+    .input-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    input {
+      flex: 1;
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 14px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .status-msg {
+      min-height: 20px;
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: #666;
+    }
+    .status-msg[data-type="error"] {
+      color: #d93025;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Todo List</h1>
+  <!-- 输入框 + 按钮 -->
+  <div class="input-container">
+    <input type="text" id="todoInput" placeholder="请输入待办事项...">
+    <button id="addBtn">添加</button>
+  </div>
+  <!-- 状态提示区域：用于显示错误、重复提示、脚本加载失败等 -->
+  <p id="statusMsg" class="status-msg" role="alert" aria-live="polite"></p>
+  <!-- Todo 列表容器 -->
+  <ul id="todoList"></ul>
+  <!-- <script> 放在 <body> 末尾，确保 DOM 节点加载完毕后才执行 JS脚本 -->
+  <script src="script.js"
+    onerror="document.getElementById('statusMsg').textContent='脚本加载失败，请检查 script.js 路径。';"></script>
+</body>
+
+</html>
