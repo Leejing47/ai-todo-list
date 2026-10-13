@@ -105,6 +105,12 @@
     todoInput.focus();
     clearMessage();
   }
+
+  function removeTodo(id) {
+    todos = todos.filter(t => t.id !== id);
+    save();
+    render();
+  }
   // 8. 独立小改任务，清除所有已完成事项
   window.clearCompleted = function () {
     todos = todos.filter(t => !t.completed);
