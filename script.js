@@ -78,21 +78,47 @@
     })
   }
   // 7. 三个核心操作函数
+  function isDuplicate(text) {
+    return todos.some(t => t.text === text); // 基于数据源判断重复
+  }
 
+  function addTodo() {
+    const text = todoInput.value.trim();
+    if (text === '') {
+      showMessage('请输入有效的代办事项！', 'error');
+      todoInput.focus();
+      return;
+    }
+    if (isDuplicate(text)) {
+      showMessage('该待办事项已存在，请勿重复添加。', 'error');
+      todoInput.value = '';
+      todoInput.focus();
+      return;
+    }
+
+    // 生成新数组添加
+    todos = [...todos, { id: Date.now(), text, completed: false }];
+    save();
+    render();
+
+    todoInput.value = '';
+    todoInput.focus();
+    clearMessage();
+  }
   // 8. 独立小改任务，清除所有已完成事项
-  window.clearCompleted = function(){
+  window.clearCompleted = function () {
     todos = todos.filter(t => !t.completed);
     save();
     render();
   }
   // 9. 事件监听绑定
-  addBtn.addEventListener('click',addTodo);
-  todoInput.addEventListener('keydown',function(e){
-    if(e.isComposing ) return;
-    if(e.key === 'Enter') addTodo();
+  addBtn.addEventListener('click', addTodo);
+  todoInput.addEventListener('keydown', function (e) {
+    if (e.isComposing) return;
+    if (e.key === 'Enter') addTodo();
   });
-  todoInput.addEventListener('input',clearMessage);
-  
+  todoInput.addEventListener('input', clearMessage);
+
   // 初始化首次渲染
   render();
 })();
