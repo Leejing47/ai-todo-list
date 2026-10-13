@@ -111,6 +111,12 @@
     save();
     render();
   }
+
+  function toggleTodo(id) {
+    todos = todos.map(t => t.id === id ? { ...t, completed: !t.completed } : t);
+    save();
+    render();
+  }
   // 8. 独立小改任务，清除所有已完成事项
   window.clearCompleted = function () {
     todos = todos.filter(t => !t.completed);
