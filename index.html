@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo 列表 V2.1</title>
   <style>
-    /* 基础样式，让页面更整洁 */
     body {
       font-family: Arial, sans-serif;
-      max-width: 400px;
+      max-width: 440px;
       margin: 50px auto;
       padding: 0 20px;
     }
@@ -48,15 +47,42 @@
     }
     ul {
       list-style-type: none;
-      padding: 0;
+      padding: 8px;
+      min-height: 60px;
+      border: 1px dashed #dce1e7;
+      border-radius: 6px;
     }
     li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
       padding: 10px;
       background-color: #f8f9fa;
       border: 1px solid #e9ecef;
       border-radius: 4px;
       margin-bottom: 8px;
       word-break: break-all;
+      cursor: pointer;
+    }
+    li span {
+      flex: 1;
+    }
+    li button {
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+    li button[data-action="edit"] {
+      background-color: #6c757d;
+    }
+    li button[data-action="edit"]:hover {
+      background-color: #5a6268;
+    }
+    li button[data-action="delete"] {
+      background-color: #dc3545;
+    }
+    li button[data-action="delete"]:hover {
+      background-color: #b02a37;
     }
   </style>
 </head>
