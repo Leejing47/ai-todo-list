@@ -124,7 +124,27 @@
     if (e.key === 'Enter') addTodo();
   });
   todoInput.addEventListener('input', clearMessage);
+  // 父容器 ul 统一接管列表点击事件（事件委托 + 三道边界防御）
+  todoList.addEventListener('click', (e) => {
+    // 防御 1：确保事件目标是 Element 元素节点
+    if (!(e.target instanceof Element)) return;
 
+    // 防御 2：向上查找最近的 li，且必须属于当前 todoList（点击列表空白处时 item 为 null）
+    const item = e.target.closest('li');
+    if (!item || !todoList.contains(item)) return;
+
+    // 防御 3：读取 data-id 并确保非空
+    const id = item.dataset.id;
+    if (!id) return;
+
+    // 操作分流：判断点击的是否为删除按钮
+    const delBtn = e.target.closest('[data-action="delete"]');
+    if (delBtn && item.contains(delBtn)) {
+      deleteTodo(id);
+    } else {
+      toggleTodo(id);
+    }
+  });
   // 初始化首次渲染
   render();
 })();
