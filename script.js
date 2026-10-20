@@ -43,39 +43,33 @@
     delete statusMsg.dataset.type;
   }
 
-  // 6. 核心渲染函数render
+  // 6. 核心渲染函数 render：只负责建元素 + 写标识，不绑监听器
   function render() {
     todoList.innerHTML = ''; // 清空列表重画
 
-    // 根据filter过滤数据
     const shown = todos.filter(t =>
       filter === 'all' ? true :
         filter === 'done' ? t.completed : !t.completed);
 
     shown.forEach(t => {
       const li = document.createElement('li');
-      li.textContent = t.text;
-      li.dataset.id = t.id;
+      li.dataset.id = t.id; // ① 将唯一 id 写进 DOM 的 data-id 属性
       if (t.completed) {
         li.style.textDecoration = 'line-through';
         li.style.color = '#888';
       }
 
-      // 绑定点击切换完成状态事件
-      li.addEventListener('click', () => toggleTodo(t.id));
+      const span = document.createElement('span');
+      span.textContent = t.text;
 
-      // 绑定删除按钮
       const delBtn = document.createElement('button');
-      delBtn.textContent = '×';
+      delBtn.dataset.action = 'delete'; // ② 标记按钮操作类型为 delete
+      delBtn.textContent = '删除';
       delBtn.style.marginLeft = '10px';
-      delBtn.addEventListener('click', e => {
-        e.stopPropagation(); // 阻止冒泡
-        removeTodo(t.id);
-      });
 
-      li.appendChild(delBtn);
+      li.append(span, delBtn);
       todoList.appendChild(li);
-    })
+    });
   }
   // 7. 三个核心操作函数
   function isDuplicate(text) {
