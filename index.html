@@ -12,11 +12,13 @@
       margin: 50px auto;
       padding: 0 20px;
     }
+
     .input-container {
       display: flex;
       gap: 10px;
       margin-bottom: 12px;
     }
+
     input {
       flex: 1;
       padding: 8px 12px;
@@ -24,6 +26,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
     button {
       padding: 8px 16px;
       font-size: 14px;
@@ -33,18 +36,22 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #0056b3;
     }
+
     .status-msg {
       min-height: 20px;
       margin: 0 0 12px;
       font-size: 13px;
       color: #666;
     }
+
     .status-msg[data-type="error"] {
       color: #d93025;
     }
+
     ul {
       list-style-type: none;
       padding: 8px;
@@ -52,6 +59,7 @@
       border: 1px dashed #dce1e7;
       border-radius: 6px;
     }
+
     li {
       display: flex;
       align-items: center;
@@ -65,27 +73,34 @@
       word-break: break-all;
       cursor: pointer;
     }
+
     li span {
       flex: 1;
     }
+
     li button {
       padding: 4px 10px;
       font-size: 12px;
     }
+
     li button[data-action="edit"] {
       background-color: #6c757d;
     }
+
     li button[data-action="edit"]:hover {
       background-color: #5a6268;
     }
+
     li button[data-action="delete"] {
       background-color: #dc3545;
     }
+
     li button[data-action="delete"]:hover {
       background-color: #b02a37;
     }
   </style>
 </head>
+
 <body>
   <h1>My Todo List</h1>
   <!-- 输入框 + 按钮 -->
@@ -98,8 +113,7 @@
   <!-- Todo 列表容器 -->
   <ul id="todoList"></ul>
   <!-- <script> 放在 <body> 末尾，确保 DOM 节点加载完毕后才执行 JS脚本 -->
-  <script src="script.js"
-    onerror="document.getElementById('statusMsg').textContent='脚本加载失败，请检查 script.js 路径。';"></script>
+  <script type="module" src="./todo.ts"></script>
 </body>
 
 </html>
