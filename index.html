@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo 列表 V2.1</title>
+  <title>Todo 列表 V3.0</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -103,17 +103,13 @@
 
 <body>
   <h1>My Todo List</h1>
-  <!-- 输入框 + 按钮 -->
   <div class="input-container">
     <input type="text" id="todoInput" placeholder="请输入待办事项...">
     <button id="addBtn">添加</button>
   </div>
-  <!-- 状态提示区域：用于显示错误、重复提示、脚本加载失败等 -->
   <p id="statusMsg" class="status-msg" role="alert" aria-live="polite"></p>
-  <!-- Todo 列表容器 -->
   <ul id="todoList"></ul>
-  <!-- <script> 放在 <body> 末尾，确保 DOM 节点加载完毕后才执行 JS脚本 -->
-  <script type="module" src="./todo.ts"></script>
+  <script type="module" src="./src/todo.ts"></script>
 </body>
 
 </html>
