@@ -4,21 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo 列表 V3.0</title>
+  <title>Todo 列表 V4.0 (React)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 440px;
+      max-width: 460px;
       margin: 50px auto;
       padding: 0 20px;
     }
-
     .input-container {
       display: flex;
       gap: 10px;
       margin-bottom: 12px;
     }
-
     input {
       flex: 1;
       padding: 8px 12px;
@@ -26,7 +24,6 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-
     button {
       padding: 8px 16px;
       font-size: 14px;
@@ -36,22 +33,18 @@
       border-radius: 4px;
       cursor: pointer;
     }
-
     button:hover {
       background-color: #0056b3;
     }
-
     .status-msg {
       min-height: 20px;
       margin: 0 0 12px;
       font-size: 13px;
       color: #666;
     }
-
     .status-msg[data-type="error"] {
       color: #d93025;
     }
-
     ul {
       list-style-type: none;
       padding: 8px;
@@ -59,7 +52,6 @@
       border: 1px dashed #dce1e7;
       border-radius: 6px;
     }
-
     li {
       display: flex;
       align-items: center;
@@ -71,45 +63,39 @@
       border-radius: 4px;
       margin-bottom: 8px;
       word-break: break-all;
-      cursor: pointer;
     }
-
     li span {
       flex: 1;
+      cursor: pointer;
     }
-
     li button {
       padding: 4px 10px;
       font-size: 12px;
     }
-
-    li button[data-action="edit"] {
+    li button.complete-btn {
+      background-color: #28a745;
+    }
+    li button.complete-btn:hover {
+      background-color: #218838;
+    }
+    li button.edit-btn {
       background-color: #6c757d;
     }
-
-    li button[data-action="edit"]:hover {
+    li button.edit-btn:hover {
       background-color: #5a6268;
     }
-
-    li button[data-action="delete"] {
+    li button.delete-btn {
       background-color: #dc3545;
     }
-
-    li button[data-action="delete"]:hover {
+    li button.delete-btn:hover {
       background-color: #b02a37;
     }
   </style>
 </head>
 
 <body>
-  <h1>My Todo List</h1>
-  <div class="input-container">
-    <input type="text" id="todoInput" placeholder="请输入待办事项...">
-    <button id="addBtn">添加</button>
-  </div>
-  <p id="statusMsg" class="status-msg" role="alert" aria-live="polite"></p>
-  <ul id="todoList"></ul>
-  <script type="module" src="./src/todo.ts"></script>
+  <div id="root"></div>
+  <script type="module" src="./src/main.tsx"></script>
 </body>
 
 </html>
