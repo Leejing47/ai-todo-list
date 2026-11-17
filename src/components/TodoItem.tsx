@@ -1,5 +1,6 @@
 import React from 'react';
 import { Todo } from '../todo';
+import { useTheme } from '../context/ThemeContext';
 
 export interface TodoItemProps {
   todo: Todo;
@@ -9,13 +10,21 @@ export interface TodoItemProps {
 }
 
 export function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps): React.JSX.Element {
+  // 消费 ThemeContext（第 3 个消费组件）
+  const { theme } = useTheme();
+
+  function getTextColor(): string {
+    if (todo.completed) return '#888888';
+    return theme === 'dark' ? '#f1f5f9' : '#1e293b';
+  }
+
   return (
-    <li>
+    <li className={`todo-item todo-item-${theme}`}>
       <span
         onClick={() => onToggle(todo.id)}
         style={{
           textDecoration: todo.completed ? 'line-through' : 'none',
-          color: todo.completed ? '#888' : '#000',
+          color: getTextColor(),
         }}
       >
         {todo.text}

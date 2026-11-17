@@ -7,16 +7,21 @@ import {
   isDuplicate,
   MAX_TEXT_LENGTH,
 } from '../todo';
+import { useTheme } from '../context/ThemeContext';
 import { TodoForm } from './TodoForm';
 import { TodoList } from './TodoList';
 
 export function TodoApp(): React.JSX.Element {
+  // 1. 消费 ThemeContext（第 1 个消费组件）
+  const { theme, toggleTheme } = useTheme();
+
+  // 2. 惰性初始化：仅在组件首次挂载时同步读取一次 localStorage
   const [todos, setTodos] = useState<Todo[]>(() => loadTodos());
   const [errorMsg, setErrorMsg] = useState<string>('');
 
+  // 3. 单一 Effect 写入：仅在 todos 变化时同步写入 localStorage，不做双 Effect
   useEffect(() => {
     saveTodos(todos);
-    console.log('当前 State todos:', todos);
   }, [todos]);
 
   function handleAdd(rawText: string): boolean {
@@ -73,8 +78,13 @@ export function TodoApp(): React.JSX.Element {
   }
 
   return (
-    <div>
-      <h1>My Todo List (React V4.0)</h1>
+    <div className={`app-container theme-${theme}`}>
+      <div className="header-bar">
+        <h1>My Todo List</h1>
+        <button type="button" className="theme-toggle-btn" onClick={toggleTheme}>
+          {theme === 'light' ? '🌙 切换深色 (Dark)' : '☀️ 切换浅色 (Light)'}
+        </button>
+      </div>
       <TodoForm onAdd={handleAdd} onClearMessage={() => setErrorMsg('')} />
       <p
         className="status-msg"
